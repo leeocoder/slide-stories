@@ -2,7 +2,6 @@ class SlideStories {
   constructor(id) {
     this.slide = document.querySelector(`[data-slide='${id}']`);
     this.active = 0;
-    console.log(this.slide);
     this.init();
   }
 
@@ -10,6 +9,10 @@ class SlideStories {
     this.active = index;
     this.items.forEach((item) => item.classList.remove("active"));
     this.items[index].classList.add("active");
+
+    this.thumbItems.forEach((item) => item.classList.remove("active"));
+    this.thumbItems[index].classList.add("active");
+    this.autoSlide();
   }
 
   addNavigation() {
@@ -34,10 +37,22 @@ class SlideStories {
     }
   }
 
+  addThumbItems() {
+    this.items.forEach(() => (this.thumb.innerHTML += `<span></span>`));
+    this.thumbItems = Array.from(this.thumb.children);
+  }
+
+  autoSlide() {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(this.next, 5000);
+  }
+
   init() {
     this.next = this.next.bind(this);
     this.prev = this.prev.bind(this);
     this.items = this.slide.querySelectorAll(".slide-items > *");
+    this.thumb = this.slide.querySelector(".slide-thumb");
+    this.addThumbItems();
     this.activeSlide(0);
     this.addNavigation();
   }
