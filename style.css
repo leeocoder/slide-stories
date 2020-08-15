@@ -1,0 +1,29 @@
+body {
+  background: #1b1d20;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.slide {
+  max-width: 380px;
+  margin: 20px auto;
+}
+
+.slide-items {
+  position: relative;
+}
+
+.slide-items > * {
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.slide-items > .active {
+  opacity: 1;
+  pointer-events: initial;
+  position: relative;
+}
