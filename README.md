@@ -1,1 +1,3 @@
 # slide-stories
+
+This is just project with purpose to learn more about javascript, without plugins.....
